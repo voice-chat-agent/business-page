@@ -45,14 +45,6 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Configure Environment Variables:
-Create a `.env` file in the backend folder with the following content (update placeholders accordingly):
-```ini
-MONGO_URI=<your_mongodb_atlas_connection_string>
-SECRET_KEY=your_flask_secret_key
-JWT_SECRET_KEY=your_jwt_secret_key
-```
-
 #### Run the Flask Server:
 ```bash
 python app.py

@@ -1,7 +1,7 @@
-# 🚀 My Website: Full-Stack Application with Flask & React
+# 🚀 
 
 ## 📖 Overview
-This is a professional full-stack web application with a Flask backend (using JWT-based authentication and MongoDB Atlas for data storage) and a React frontend (using React Router v6). The application includes features for user sign-up, login, a protected dashboard, and logout functionality.
+
 
 ---
 

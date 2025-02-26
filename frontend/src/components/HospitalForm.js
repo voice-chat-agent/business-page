@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-// import './HospitalForm.css'; // create and import your CSS file for styling
+// import './HospitalForm.css'; // Uncomment this line if you create a CSS file for styling
 
 const HospitalForm = () => {
   // State for hospital details
@@ -14,6 +13,9 @@ const HospitalForm = () => {
     { name: '', experience: '', specialty: '', description: '', gender: '' }
   ]);
   
+  // State for acknowledgment message
+  const [acknowledgment, setAcknowledgment] = useState('');
+
   // Handle change for doctor fields
   const handleDoctorChange = (index, field, value) => {
     const updatedDoctors = [...doctors];
@@ -42,22 +44,31 @@ const HospitalForm = () => {
       doctors
     };
 
-    // Send the data to your backend API (ensure this endpoint handles the saving logic to MongoDB)
     try {
+      // Get the JWT token from localStorage
+      const token = localStorage.getItem('access_token');
       const res = await fetch('http://localhost:5000/api/hospitals', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`  // Send the JWT token with the request
+        },
         body: JSON.stringify(hospitalData)
       });
       const result = await res.json();
       if (res.ok) {
-        // Optionally, handle success (e.g., notify the user, redirect, or reset the form)
-        console.log("Data saved successfully", result);
+        setAcknowledgment("Order placed successfully!");
+        // Optionally, clear the form fields
+        setHospitalName('');
+        setAddress('');
+        setPhoneNumbers('');
+        setProductAgent('');
+        setDoctors([{ name: '', experience: '', specialty: '', description: '', gender: '' }]);
       } else {
-        console.error("Error saving data", result);
+        setAcknowledgment("Error placing order: " + (result.error || "Unknown error"));
       }
     } catch (err) {
-      console.error("Server error:", err);
+      setAcknowledgment("Server error: " + err.message);
     }
   };
 
@@ -172,6 +183,9 @@ const HospitalForm = () => {
         <br /><br />
         <button type="submit">Save Hospital & Doctor Details</button>
       </form>
+      
+      {/* Show acknowledgment message if present */}
+      {acknowledgment && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>{acknowledgment}</p>}
     </div>
   );
 };

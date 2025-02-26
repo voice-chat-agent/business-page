@@ -9,10 +9,13 @@ from models import hash_password, verify_password
 
 auth_bp = Blueprint('auth', __name__)
 
-# Connect to MongoDB Atlas
+# Connect to MongoDB Atlas using the URI from config
 client = MongoClient(Config.MONGO_URI)
 db = client['mydatabase']  # Change this to your desired database name
+
+# Collections for users and orders
 users_collection = db['users']
+orders_collection = db['orders']
 
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
@@ -76,6 +79,7 @@ def login():
         ]
     })
     if user and verify_password(user['password'], password):
+        # Use the user's _id as the identity in the JWT.
         access_token = create_access_token(identity=str(user['_id']))
         return jsonify({
             'message': 'Login successful',
@@ -107,3 +111,82 @@ def dashboard():
             'country_address': user['country_address']
         }
     }), 200
+
+# -------------------------------
+# New Orders Endpoints
+# -------------------------------
+
+@auth_bp.route('/orders/<order_type>', methods=['POST'])
+@jwt_required()
+def add_order(order_type):
+    """
+    Generalized endpoint for saving an order.
+    The URL parameter <order_type> indicates the type of order (e.g., hospital, restaurant).
+    Retrieves the full user details from the database and adds them to the order document.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    try:
+        # Get the current user's ID from the JWT token
+        current_user_id = get_jwt_identity()
+        # Retrieve the full user details from the database
+        user = users_collection.find_one({'_id': ObjectId(current_user_id)})
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+
+        # Add order type and full user details to the order data
+        data["order_type"] = order_type
+        data["user"] = {
+            "id": str(user['_id']),
+            "username": user.get('username'),
+            "email": user.get('email'),
+            "phone": user.get('phone'),
+            "country_address": user.get('country_address')
+        }
+        result = orders_collection.insert_one(data)
+        print("Inserted document ID:", result.inserted_id)
+        return jsonify({
+            'message': 'Order saved successfully',
+            'id': str(result.inserted_id)
+        }), 201
+    except Exception as e:
+        print("Error during order insertion:", str(e))
+        return jsonify({'error': str(e)}), 500
+
+@auth_bp.route('/hospitals', methods=['POST'])
+@jwt_required()
+def add_hospital_alias():
+    """
+    Alias endpoint specifically for hospital orders.
+    This automatically sets order_type to 'hospital' and retrieves the full user details
+    (username, email, phone, country_address) to add to the order document.
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    try:
+        current_user_id = get_jwt_identity()
+        user = users_collection.find_one({'_id': ObjectId(current_user_id)})
+        if not user:
+            return jsonify({'error': 'User not found'}), 404
+
+        data["order_type"] = "hospital"
+        data["user"] = {
+            "id": str(user['_id']),
+            "username": user.get('username'),
+            "email": user.get('email'),
+            "phone": user.get('phone'),
+            "country_address": user.get('country_address')
+        }
+        result = orders_collection.insert_one(data)
+        print("Inserted document ID:", result.inserted_id)
+        return jsonify({
+            'message': 'Order saved successfully',
+            'id': str(result.inserted_id)
+        }), 201
+    except Exception as e:
+        print("Error during hospital order insertion:", str(e))
+        return jsonify({'error': str(e)}), 500

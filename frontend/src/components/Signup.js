@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/Auth.css';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -35,22 +36,29 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="username" placeholder="Username" onChange={handleChange} required />
-        <br />
-        <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-        <br />
-        <input name="phone" placeholder="Phone" onChange={handleChange} required />
-        <br />
-        <input name="country_address" placeholder="Country Address" onChange={handleChange} required />
-        <br />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          <input name="username" placeholder="Username" onChange={handleChange} required />
+          <br />
+          <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+          <br />
+          <input name="phone" placeholder="Phone" onChange={handleChange} required />
+          <br />
+          <input name="country_address" placeholder="Country Address" onChange={handleChange} required />
+          <br />
+          <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
+          <br />
+          <button type="submit">Sign Up</button>
+        </form>
+        {error && <p className="error">{error}</p>}
+        
+        {/* Already have an account link */}
+        <p className="switch-link">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };

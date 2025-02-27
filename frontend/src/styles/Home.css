@@ -1,75 +1,82 @@
+/* Home Page Styles */
 .home-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 92.2vh; /* Full screen height */
-    background-color: #f8f9fa;
-    text-align: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 92.2vh; /* Full screen height */
+  background-color: #f8f9fa;
+  text-align: center;
+}
 
-  .home-container .heading{
-    margin-top: -50px;
-  }
-  
+.home-container .heading {
+  /* margin-top: -50px; */
+  font-size: 28px;
+  color: #333;
+}
+
+/* Cards Container */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  margin-top: 40px;
+}
+
+/* Individual Card */
+.card {
+  width: 320px; /* Increased width */
+  height: 260px; /* Increased height */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Title */
+.card h2 {
+  margin: 10px 0;
+  font-size: 22px;
+  color: #333;
+}
+
+/* Card Text */
+.card p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
   .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    margin-top: 40px;
-  }
-  
-  .card {
-    width: 320px; /* Increased width */
-    height: 260px; /* Increased height */
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  .card h2 {
-    margin: 10px 0;
-    font-size: 22px;
-  }
-  
-  .card p {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 900px) {
-    .card-container {
       flex-direction: column;
       align-items: center;
-    }
-  
-    .card {
-      width: 80%;
-    }
   }
-  
 
-  /* Navigation Bar Styling */
+  .card {
+      width: 80%;
+  }
+}
+
+/* Navigation Bar Styling */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #8529f5;
-  padding: 3px 20px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,14 +86,27 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
+  margin-left:100px;
 }
 
-.nav-links button {
+.button1 {
   background: transparent;
   border: none;
   color: white;
   font-size: 16px;
   margin-left: 15px;
+  margin-right:0px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.button2 {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right:50px;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
 }
@@ -94,8 +114,3 @@
 .nav-links button:hover {
   color: #ddd;
 }
-
-/* Push the content down to avoid overlap */
-/* .home-container {
-  padding-top: 60px;
-} */

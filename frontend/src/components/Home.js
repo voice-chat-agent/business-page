@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css"; // Styling file
+// import "../styles/Navbar.css"; // Styling file
 
 const Home = ({ token, user }) => {
   const navigate = useNavigate();
@@ -15,19 +16,9 @@ const Home = ({ token, user }) => {
 
   return (
     <div className="home-container">
-      
-      {/* Navigation Bar */}
-      <nav className="navbar">
-        <h2 className="nav-logo">Helix</h2>
-        <div className="nav-links">
-          <button onClick={() => navigate("/signup")}>Signup</button>
-          <button onClick={() => navigate("/login")}>Login</button>
-        </div>
-      </nav>
-
       <div className="heading">
-        <h1>Welcome to the Home Page</h1>
-        {user && <h2>Hello, {user.username}!</h2>} {/* Show username after login */}
+        <h3>Welcome to the Home Page</h3>
+        {user && <h4>Hello, {user.username}!</h4>} {/* Show username after login */}
         <div className="card-container">
             <div className="card" onClick={handleCardClick}>
             <h2>Helix</h2>

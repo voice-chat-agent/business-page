@@ -8,7 +8,6 @@ import HospitalImg from './images/Hospital.jpg';
 import SalonImg from './images/Salon.jpg';
 import PoliceImg from './images/image.jpg';
 import RandomImg from './images/image.jpg';
-// import ParkImg from './images/park.jpg';
 
 // Reusable Card Component
 const Card = ({ title, image, page }) => {
@@ -52,12 +51,11 @@ const Dashboard = ({ token }) => {
 
   // Card Data with different names, images, and pages
   const cardData = [
-    { title: "Restaurant", image: RestaurantImg, page: "/restaurant" },
     { title: "Hospital", image: HospitalImg, page: "/hospital" },
+    { title: "Restaurant", image: RestaurantImg, page: "/restaurant" },
     { title: "Salon", image: SalonImg, page: "/salon" },
-    { title: "Police", image: PoliceImg, page: "/police" },
-    { title: "Random Image", image: RandomImg, page: "/random" },
-    // { title: "Park", image: ParkImg, page: "/park" }
+    { title: "Image 1", image: PoliceImg, page: "/police" },
+    { title: "Image 2", image: RandomImg, page: "/random" }
   ];
 
   return (

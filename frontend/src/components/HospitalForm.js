@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/HospitalForm.css';
 // import './HospitalForm.css'; // Uncomment this line if you create a CSS file for styling
 
 const HospitalForm = () => {
@@ -119,8 +120,9 @@ const HospitalForm = () => {
             <option value="both">Both</option>
           </select>
         </div>
-
+        <br/>
         <hr />
+        <br/>
 
         <h3>Doctor Details</h3>
         {doctors.map((doctor, index) => (
@@ -173,7 +175,9 @@ const HospitalForm = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-            <hr />
+            <br/>
+            <hr className="hr1"/>
+            <br/>
           </div>
         ))}
 

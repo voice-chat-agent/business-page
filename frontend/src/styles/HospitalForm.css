@@ -1,0 +1,88 @@
+/* styles/HospitalForm.css */
+.hospital-form-container {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-top:80px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input, textarea {
+    width: 98%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  select{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="button"] {
+    background-color: #28a745;
+    margin-bottom: 10px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #218838;
+  }
+  
+  p {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+  }
+  
+  .doctor-form{
+    margin-top:20px;
+  }
+
+  .hr1 {
+    background-color:#bbf6c9;
+    height:2px;
+    border:0px;
+  }
+  /* Keeping the logout button unchanged */
+  

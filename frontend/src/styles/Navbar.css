@@ -1,81 +1,46 @@
 /* Navigation Bar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-  }
-  
-  .nav-links a:hover,
-  .nav-links .active {
-    border-bottom: 2px solid white;
-  }
-  
-  /* Authentication Page Styles */
-  .auth-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .auth-box {
-    width: 350px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .auth-box h2 {
-    margin-bottom: 15px;
-  }
-  
-  .auth-box input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .auth-box button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .auth-box button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error {
-    color: red;
-    margin-top: 10px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  border-bottom: 2px solid white;
+}
+
+.nav-links button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links button:hover {
+  color: #ddd;
+}

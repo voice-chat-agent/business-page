@@ -1,22 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Dashboard.css'; 
+import './Dashboard.css';
 
-// Import images from the same folder
+// Import images
 import RestaurantImg from './images/resturant.jpg';
 import HospitalImg from './images/Hospital.jpg';
 import SalonImg from './images/Salon.jpg';
-import PoliceImg from './images/image.jpg';
-import RandomImg from './images/image.jpg';
 
 // Reusable Card Component
 const Card = ({ title, image, page }) => {
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Define action points based on card type
+  const getActionPoints = () => {
+    switch (title) {
+      case "Hospital":
+        return ["Services Included:","• Doctor Lookup", "• Doctor Recommendation based on symptoms","• Appointment Booking and Cancelation"];
+      case "Restaurant":
+        return ["Services Included:","• Cuisine search","• Table Booking", "• Order Booking and cancellation"];
+      case "Salon":
+        return ["Services Included:","• Slot booking", "• Inquiry of plans","• Detail description of services"];
+      default:
+        return [];
+    }
+  };
 
   return (
-    <div className="card" onClick={() => navigate(page)}>
-      <img src={image} alt={title} className="card-image" />
-      <h3>{title}</h3>
+    <div 
+      className="card1" 
+      onClick={() => navigate(page)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img src={image} alt={title} className="card-image1" />
+      <div className={`card-overlay1 ${isHovered ? 'active' : ''}`}>
+        <h3 className="card-title1">{title}</h3>
+        <div className="card-actions1">
+          {getActionPoints().map((action, index) => (
+            <span key={index}>{action}</span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
@@ -45,31 +70,27 @@ const Dashboard = ({ token }) => {
     if (token) fetchDashboard();
   }, [token]);
 
-  if (!token) return <p className="error-text">Access Denied. Please log in.</p>;
-  if (error) return <p className="error-text">{error}</p>;
-  if (!dashboardData) return <p>Loading dashboard...</p>;
+  if (!token) return <p className="error-text1">Access Denied. Please log in.</p>;
+  if (error) return <p className="error-text1">{error}</p>;
+  if (!dashboardData) return <p className="loading-text1">Loading dashboard...</p>;
 
-  // Card Data with different names, images, and pages
   const cardData = [
     { title: "Hospital", image: HospitalImg, page: "/hospital" },
     { title: "Restaurant", image: RestaurantImg, page: "/restaurant" },
-    { title: "Salon", image: SalonImg, page: "/salon" },
-    { title: "Image 1", image: PoliceImg, page: "/police" },
-    { title: "Image 2", image: RandomImg, page: "/random" }
+    { title: "Salon", image: SalonImg, page: "/restaurant" },
   ];
 
   return (
-    <div className="dashboard-container">
-      {/* User Info Section */}
+    <div className="dashboard-container1">
       {dashboardData.user && (
-        <div className="user-info">
-          <h2>Welcome, {dashboardData.user.username}!</h2>
+        <div className="user-info1">
+          <h2>Welcome, <span className="username1">{dashboardData.user.username}</span>!</h2>
+          <h3 className="h3heading">Select Your Business</h3>
         </div>
       )}
 
-      {/* Centered Card Grid Layout */}
-      <div className="grid-wrapper">
-        <div className="grid-container">
+      <div className="grid-wrapper1">
+        <div className="grid-container1">
           {cardData.map((card, index) => (
             <Card key={index} title={card.title} image={card.image} page={card.page} />
           ))}

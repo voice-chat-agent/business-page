@@ -1,0 +1,119 @@
+/* Center the authentication container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #bad9f8;
+    padding: 0;
+}
+
+/* Content Layout */
+.auth-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Signup Image */
+.signup-image {
+    width: 300px;
+    height: auto;
+}
+
+/* Box styling */
+.auth-box {
+    width: 350px;
+    padding: 30px;
+    background: rgb(220, 220, 220);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Heading */
+.auth-box h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form styling */
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Input fields */
+.auth-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #161515;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background: rgb(220, 220, 220);
+}
+
+/* Button styling */
+.auth-box button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+}
+
+.auth-box button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.auth-box button:active {
+    background-color: #004999;
+    transform: scale(0.98);
+}
+
+/* Error message */
+.error {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Switch between login and signup */
+.switch-link {
+    margin-top: 15px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.switch-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .signup-image {
+        width: 250px;
+    }
+}

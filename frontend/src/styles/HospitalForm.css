@@ -1,88 +1,235 @@
-/* styles/HospitalForm.css */
+:root {
+  --primary-color: #4361ee;
+  --primary-dark: #3a56d4;
+  --secondary-color: #3f37c9;
+  --success-color: #4cc9f0;
+  --error-color: #f72585;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #6c757d;
+  --text-color: #212529;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .hospital-form-container {
-    width: 50%;
-    margin: 20px auto;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: rgb(197, 196, 196);
+  box-shadow: var(--shadow);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top:80px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-header h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  color: var(--dark-gray);
+  font-size: 1rem;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.form-section:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  background-color: white;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.add-doctor-btn {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.add-doctor-btn:hover {
+  background-color: #3ab7db;
+  transform: translateY(-2px);
+}
+
+.remove-doctor-btn {
+  background-color: var(--error-color);
+  color: white;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+}
+
+.remove-doctor-btn:hover {
+  background-color: #e5177e;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  background-color: var(--dark-gray);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.doctor-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.doctor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.doctor-header h4 {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+
+.acknowledgment {
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeIn 0.5s ease;
+}
+
+.acknowledgment.success {
+  background-color: rgba(76, 201, 240, 0.2);
+  color: #0a9396;
+}
+
+.acknowledgment.error {
+  background-color: rgba(247, 37, 133, 0.2);
+  color: #ae2012;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hospital-form-container {
     padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: auto;
   }
   
-  h2, h3 {
-    text-align: center;
-    color: #333;
-    margin-top:80px;
+  .form-grid {
+    grid-template-columns: 1fr;
   }
   
-  .form-group {
-    margin-bottom: 15px;
+  .form-group.full-width {
+    grid-column: span 1;
   }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input, textarea {
-    width: 98%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+}
 
-  select{
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button[type="button"] {
-    background-color: #28a745;
-    margin-bottom: 10px;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #218838;
-  }
-  
-  p {
-    text-align: center;
-    color: green;
-    font-weight: bold;
-  }
-  
-  .doctor-form{
-    margin-top:20px;
-  }
-
-  .hr1 {
-    background-color:#bbf6c9;
-    height:2px;
-    border:0px;
-  }
-  /* Keeping the logout button unchanged */
-  
+input, select, textarea{
+  border-color: rgb(132, 132, 132);
+}
+.pclass{
+  color:rgb(215, 22, 22);
+}
+.optionclass{
+  color:grey;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/Auth.css';
+import '../styles/Login.css'; // Ensure the CSS file is linked
 
 const Login = ({ setToken, setUser }) => {
   const navigate = useNavigate();
@@ -36,20 +36,21 @@ const Login = ({ setToken, setUser }) => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container1">
       <div className="auth-box">
-        <h2>Login</h2>
+        <h2 className="bold">Login</h2>
         <form onSubmit={handleSubmit}>
           <input
             name="login_identifier"
+            className="class1"
             placeholder="Username, Email, or Phone"
             onChange={handleChange}
             required
           />
           <br />
-          <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
+          <input className="class1" name="password" type="password" placeholder="Password" onChange={handleChange} required />
           <br />
-          <button type="submit">Login</button>
+          <button className="bold" type="submit">Login</button>
         </form>
         {error && <p className="error">{error}</p>}
         

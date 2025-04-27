@@ -1,116 +1,200 @@
-/* Home Page Styles */
-.home-container {
+/* Global styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Video background container */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Background video */
+.video-bg {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* Typing animation container */
+.typing-container {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Bottom-right text */
+.bottom-right-text {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+}
+
+/* Placeholder for content after video */
+.content-placeholder {
+  height: 100vh;
+  background: #dbe3e3;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 92.2vh; /* Full screen height */
-  background-color: #f8f9fa;
-  text-align: center;
 }
 
-.home-container .heading {
-  /* margin-top: -50px; */
-  font-size: 28px;
-  color: #333;
-}
-
-/* Cards Container */
+/* Card container with auto-scrolling */
 .card-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-  margin-top: 40px;
+  overflow-x: auto;
+  gap: 40px;
+  padding: 20px;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  animation: autoScroll 10s linear infinite;
 }
 
-/* Individual Card */
+/* Hide the scrollbar for a clean look */
+.card-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Property for CSS animation */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+/* Card styles */
 .card {
-  width: 320px; /* Increased width */
-  height: 260px; /* Increased height */
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Poetsen One', sans-serif;
+  position: relative;
+  flex: 0 0 auto;
+  width: 550px;
+  height: auto;
+  margin: 10px;
+  padding: 0;
+  border-radius: 16px;
+  background-color: #dbe3e3;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Card Title */
-.card h2 {
-  margin: 10px 0;
-  font-size: 22px;
-  color: #333;
-}
-
-/* Card Text */
-.card p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-  .card-container {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .card {
-      width: 80%;
-  }
-}
-
-/* Navigation Bar Styling */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #8529f5;
-  padding: 0px 20px;
+/* Ensure no other styles override */
+.card .card-image {
+  width: 60px !important;      /* Force the container to 60px */
+  height: 60px !important;     /* Force the container to 60px */
+  border-radius: 80%;         /* Round corners */
+  margin: 20px auto 10px auto; /* Add spacing around the image */
+  padding: 10px;              /* Padding inside the container */
+  background-color: #fff;     /* Optional: White background */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.nav-logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-left:100px;
+.card .card-image img {
+  width: 100% !important;     /* Ensure image fills the container */
+  height: 100% !important;    /* Ensure image fits in container */
+  object-fit: contain;        /* Contain the image without stretching */
 }
 
-.button1 {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  margin-left: 15px;
-  margin-right:0px;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
+/* Animated border layer */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: conic-gradient(from 0deg, rgb(18, 58, 26), rgb(16, 219, 56), rgb(49, 78, 49));
+  z-index: -2;
+  border-radius: 24px;
+  animation: spin 6s linear infinite;
+  filter: blur(6px);
 }
 
-.button2 {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  margin-left: 10px;
-  margin-right:50px;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
+/* Inner mask to keep the animation only on the border */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background: #dbe3e3;
+  border-radius: 16px;
+  z-index: -1;
 }
 
-.nav-links button:hover {
-  color: #ddd;
+/* Animation for spinning border */
+@keyframes spin {
+  0% {
+    transform: rotate(0turn);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* Show cards when scrolled into view */
+.card.show {
+  transform: translateX(0px) scale(1);
+  opacity: 1;
+}
+
+/* Heading inside card */
+.card h3 {
+  font-size: 1.4rem;
+  color: #000000eb;
+  margin: 10px 0;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* Paragraph inside card */
+.card p {
+  font-size: 1.1rem;
+  color: #1b1515;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 10px;
+  word-wrap: break-word;
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+/* Card Icons */
+.card i {
+  font-size: 40px;
+  color: #000;
+}
+
+/* Hover Effect - Pause Auto-Scrolling */
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+  animation-play-state: paused;
 }

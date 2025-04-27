@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 import HospitalForm from './components/HospitalForm';
+import ServiceUnavailable from './components/ServiceUnavailable';
 import Navbar from './components/Navbar'; // Import Navbar
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login setToken={setToken} setUser={setUser} />} />
         <Route path="/dashboard" element={token ? <Dashboard token={token} /> : <p>Please log in to access the dashboard.</p>} />
         <Route path="/hospital" element={<HospitalForm />} />
+        <Route path="/restaurant" element={<ServiceUnavailable />} />
+        <Route path="/salon" element={<ServiceUnavailable />} />
       </Routes>
     </Router>
   );
